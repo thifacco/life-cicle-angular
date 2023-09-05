@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InputComponent } from './components/input/input.component';
+import { ItemComponent } from './components/item/item.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InputComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
