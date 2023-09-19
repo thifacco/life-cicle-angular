@@ -8,13 +8,12 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <section class="main">
-   <app-input>
-   </app-input>
+   <app-input [itemEdit]="itemEdit"></app-input>
    <div class="container">
       <div class="lista">
          <h4 class="title-list">Lista de Compras</h4>
          <div class="itens" *ngFor="let item of listaCompras">
-            <app-item [item]="item"></app-item>
+            <app-item [item]="item" (emitItemEdit)="editar($event)"></app-item>
          </div>
       </div>
    </div>
