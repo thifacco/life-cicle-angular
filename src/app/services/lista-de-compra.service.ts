@@ -6,6 +6,8 @@ import { Item } from '../interfaces/item';
 })
 export class ListaDeCompraService {
 
+  private listaDeCompra!: Item[];
+
   constructor() {
     this.listaDeCompra = JSON.parse(localStorage.getItem('listaDeCompras') || '[]');
   }
