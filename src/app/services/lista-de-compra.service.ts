@@ -56,4 +56,8 @@ export class ListaDeCompraService {
 
     localStorage.setItem('listaDeCompras', JSON.stringify(listaOrdenada));
   }
+
+  limparItens() {
+    this.listaDeCompra = [];
+  }
 }

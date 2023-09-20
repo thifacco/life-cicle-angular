@@ -10,10 +10,17 @@
 <section class="main">
    <app-input [itemEdit]="itemEdit"></app-input>
    <div class="container">
-      <div class="lista" *ngIf="listaCompras?.length; else listaVazia">
-         <h4 class="title-list">Lista de Compras</h4>
-         <div class="itens" *ngFor="let item of listaCompras">
-            <app-item [item]="item" (emitItemEditar)="editar($event)" (emitItemIdExcluir)="excluir($event)"></app-item>
+      <div class="lista">
+         <div class="header-lista">
+            <h4 class="title-list">Lista de Compras</h4>
+            <button class="btn-header" (click)="limparLista()">
+               <small>Limpar lista</small>
+            </button>
+         </div>
+         <div class="lista-itens" *ngIf="listaCompras?.length; else listaVazia">
+            <div class="itens" *ngFor="let item of listaCompras">
+               <app-item [item]="item" (emitItemEditar)="editar($event)" (emitItemIdExcluir)="excluir($event)"></app-item>
+            </div>
          </div>
       </div>
       <ng-template #listaVazia>

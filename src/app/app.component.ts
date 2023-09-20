@@ -9,8 +9,6 @@ import { ListaDeCompraService } from './services/lista-de-compra.service';
 })
 export class AppComponent implements OnInit, DoCheck {
 
-  title = 'life-cycle-angular';
-
   listaCompras!: Array<Item>;
   itemEdit!: Item;
 
@@ -26,6 +24,7 @@ export class AppComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     console.log('DoCheck foi chamado');
     this.listaDeCompraService.atualizarLocalStorage();
+    this.listaCompras = this.listaDeCompraService.getListaDeCompra();
   }
 
   editar(item: Item) {
@@ -35,5 +34,10 @@ export class AppComponent implements OnInit, DoCheck {
   excluir(itemId: number) {
     const index = this.listaCompras.findIndex((item)=>item.id === itemId);
     this.listaCompras.splice(index, 1);
+  }
+
+  limparLista() {
+    this.listaCompras = [];
+    this.listaDeCompraService.limparItens();
   }
 }
