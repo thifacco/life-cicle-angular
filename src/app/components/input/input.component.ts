@@ -17,6 +17,7 @@ export class InputComponent implements OnChanges {
 
   constructor(private listaDeCompraService: ListaDeCompraService) { }
 
+  // checa as informações de entrada durante todo o ciclo de vida do componente
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['itemEdit'].firstChange) {
       this.editando = true;
