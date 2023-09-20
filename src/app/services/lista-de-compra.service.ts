@@ -50,4 +50,15 @@ export class ListaDeCompraService {
     const item = this.criarItem(nomeDoItem)
     this.listaDeCompra.push(item);
   }
+
+  editarItemDaLista(item: Item, novoItemNome: string) {
+    const itemEditado: Item = {
+      id: item.id,
+      nome: novoItemNome,
+      data: item.data,
+      comprado: item.comprado
+    };
+
+    this.listaDeCompra.splice(Number(item.id) - 1, 1, itemEditado);
+  }
 }

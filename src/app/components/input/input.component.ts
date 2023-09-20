@@ -12,8 +12,18 @@ export class InputComponent implements OnChanges {
   @Input() itemEdit!: Item;
 
   valorItem!: string;
+  editando = false;
+  btnLabel = 'Salvar item';
 
-  constructor(private listaDeCompraService: ListaDeCompraService) {}
+  constructor(private listaDeCompraService: ListaDeCompraService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes['itemEdit'].firstChange) {
+      this.editando = true;
+      this.btnLabel = 'Editar item';
+      this.valorItem = this.itemEdit?.nome;
+    }
+  }
 
   adicionarItem() {
     this.listaDeCompraService.adicionarItemNaLista(this.valorItem);
@@ -24,9 +34,10 @@ export class InputComponent implements OnChanges {
     this.valorItem = '';
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['itemEdit'].firstChange) {
-      this.valorItem = this.itemEdit?.nome;
-    }
+  editarItem() {
+    this.listaDeCompraService.editarItemDaLista(this.itemEdit, this.valorItem);
+    this.limparCampo();
+    this.editando = false;
+    this.btnLabel = 'Salvar item';
   }
 }
