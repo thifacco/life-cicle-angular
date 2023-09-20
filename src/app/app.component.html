@@ -13,7 +13,7 @@
       <div class="lista" *ngIf="listaCompras?.length; else listaVazia">
          <h4 class="title-list">Lista de Compras</h4>
          <div class="itens" *ngFor="let item of listaCompras">
-            <app-item [item]="item" (emitItemEdit)="editar($event)"></app-item>
+            <app-item [item]="item" (emitItemEditar)="editar($event)" (emitItemIdExcluir)="excluir($event)"></app-item>
          </div>
       </div>
       <ng-template #listaVazia>

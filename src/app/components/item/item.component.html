@@ -1,7 +1,7 @@
 <input class="checkbox" type="checkbox" name="comprado" id="comprado" [checked]="item.comprado" (change)="checarItem()">
 <p class="description" [class.line-through]="item.comprado">{{ item.nome }}</p>
 <div class="d-contents">
-   <fa-icon class="delete-icon" [icon]="faTrash"></fa-icon>
+   <fa-icon class="delete-icon" [icon]="faTrash" (click)="excluirItem()"></fa-icon>
    <fa-icon class="edit-icon" [icon]="faPen" (click)="editarItem()"></fa-icon>
 </div>
 <small class="date">{{ item.data }}</small>

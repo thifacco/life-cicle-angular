@@ -44,6 +44,16 @@ export class ListaDeCompraService {
   }
 
   atualizarLocalStorage() {
-    localStorage.setItem('listaDeCompras', JSON.stringify(this.listaDeCompra));
+    const listaOrdenada: Item[] = [];
+
+    this.listaDeCompra.forEach(item => {
+      if (item.comprado) {
+        listaOrdenada.push(item);
+      } else {
+        listaOrdenada.unshift(item);
+      }
+    })
+
+    localStorage.setItem('listaDeCompras', JSON.stringify(listaOrdenada));
   }
 }

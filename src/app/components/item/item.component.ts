@@ -10,7 +10,8 @@ import { Item } from 'src/app/interfaces/item';
 export class ItemComponent implements OnInit, OnChanges {
 
   @Input() item!: Item;
-  @Output() emitItemEdit = new EventEmitter();
+  @Output() emitItemEditar = new EventEmitter();
+  @Output() emitItemIdExcluir = new EventEmitter();
   
   faPen = faPen;
   faTrash = faTrash;
@@ -23,8 +24,18 @@ export class ItemComponent implements OnInit, OnChanges {
     console.log('OnChanges', changes);
   }
 
+  // será chamado no momento que esse componente for retirado da tela
+  // usado para fazer a lógica de limpeza
+  ngOnDestroy() {
+
+  }
+
   editarItem() {
-    this.emitItemEdit.emit(this.item);
+    this.emitItemEditar.emit(this.item);
+  }
+
+  excluirItem() {
+    this.emitItemIdExcluir.emit(this.item);
   }
 
   checarItem() {
