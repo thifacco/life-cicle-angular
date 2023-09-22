@@ -27,16 +27,16 @@ export class AppComponent implements OnInit, DoCheck {
     this.listaCompras = this.listaDeCompraService.getListaDeCompra();
   }
 
-  editar(item: Item) {
+  editar(item: Item): void {
     this.itemEdit = item;
   }
 
-  excluir(itemId: number) {
+  excluir(itemId: number): void {
     const index = this.listaCompras.findIndex((item)=>item.id === itemId);
     this.listaCompras.splice(index, 1);
   }
 
-  limparLista() {
+  limparLista(): void {
     this.listaCompras = [];
     this.listaDeCompraService.limparItens();
   }

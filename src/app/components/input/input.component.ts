@@ -26,16 +26,16 @@ export class InputComponent implements OnChanges {
     }
   }
 
-  adicionarItem() {
+  adicionarItem(): void {
     this.listaDeCompraService.adicionarItemNaLista(this.valorItem);
     this.limparCampo();
   }
 
-  limparCampo() {
+  limparCampo(): void {
     this.valorItem = '';
   }
 
-  editarItem() {
+  editarItem(): void {
     this.listaDeCompraService.editarItemDaLista(this.itemEdit, this.valorItem);
     this.limparCampo();
     this.editando = false;

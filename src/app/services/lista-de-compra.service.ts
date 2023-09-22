@@ -27,12 +27,12 @@ export class ListaDeCompraService {
     return item;
   }
 
-  adicionarItemNaLista(nomeDoItem: string) {
+  adicionarItemNaLista(nomeDoItem: string): void {
     const item = this.criarItem(nomeDoItem)
     this.listaDeCompra.push(item);
   }
 
-  editarItemDaLista(item: Item, novoItemNome: string) {
+  editarItemDaLista(item: Item, novoItemNome: string): void {
     const itemEditado: Item = {
       id: item.id,
       nome: novoItemNome,
@@ -40,24 +40,27 @@ export class ListaDeCompraService {
       comprado: item.comprado
     };
 
-    this.listaDeCompra.splice(Number(item.id) - 1, 1, itemEditado);
+    const index = this.listaDeCompra.indexOf(item);
+    this.listaDeCompra.splice(index, 1, itemEditado);
   }
 
-  atualizarLocalStorage() {
-    const listaOrdenada: Item[] = [];
-
-    this.listaDeCompra.forEach(item => {
-      if (item.comprado) {
-        listaOrdenada.push(item);
-      } else {
-        listaOrdenada.unshift(item);
-      }
-    })
-
-    localStorage.setItem('listaDeCompras', JSON.stringify(listaOrdenada));
+  atualizarLocalStorage(): void {
+    localStorage.setItem('listaDeCompras', JSON.stringify(this.listaDeCompra));
   }
 
-  limparItens() {
+  ordenarItens(item: Item, checked: boolean) {
+    const index = this.listaDeCompra.indexOf(item);
+    this.listaDeCompra.splice(index, 1);
+
+    if (checked === true) {  
+      this.listaDeCompra.push(item);
+    } else {
+      this.listaDeCompra.unshift(item);
+    }
+  }
+
+  limparItens(): void {
     this.listaDeCompra = [];
+    this.atualizarLocalStorage();
   }
 }

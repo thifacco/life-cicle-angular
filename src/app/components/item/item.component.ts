@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Item } from 'src/app/interfaces/item';
+import { ListaDeCompraService } from 'src/app/services/lista-de-compra.service';
 
 @Component({
   selector: 'app-item',
@@ -16,6 +17,8 @@ export class ItemComponent implements OnInit, OnChanges {
   faPen = faPen;
   faTrash = faTrash;
 
+  constructor(private listaDeCompraService: ListaDeCompraService) { }
+
   ngOnInit(): void {
     console.log('OnInit');
   }
@@ -26,23 +29,23 @@ export class ItemComponent implements OnInit, OnChanges {
 
   // será chamado no momento que esse componente for retirado da tela
   // usado para fazer a lógica de limpeza
-  ngOnDestroy() {
+  ngOnDestroy(): void { }
 
-  }
-
-  editarItem() {
+  editarItem(): void {
     this.emitItemEditar.emit(this.item);
   }
 
-  excluirItem() {
+  excluirItem(): void {
     this.emitItemIdExcluir.emit(this.item);
   }
 
-  checarItem() {
+  checarItem(): void {
     if (this.item.comprado === true) {
       this.item.comprado = false;
     } else {
       this.item.comprado = true;
     }
+
+    this.listaDeCompraService.ordenarItens(this.item, this.item.comprado);
   }
 }
